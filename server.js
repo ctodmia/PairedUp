@@ -4,11 +4,15 @@ var favicon = require('express-favicon');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+
 //should have access to user mongoose model with this
 var db = require('./server/database/UserModel');
+var passport = require('./config/passport');
 
 //start express to app variable
 var app = express();
+var passport = passport();
+
 var port = 8000;
 
 
