@@ -4,7 +4,10 @@ var favicon = require('express-favicon');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
-
+var passport = require('passport');
+var GitHubStrategy = require('passport-github').Strategy;
+var secret = require('githubsecret');
+var findOneOrCreate = require('mongoose-find-one-or-create');
 //should have access to user mongoose model with this
 var db = require('./server/database/UserModel');
 var passport = require('./config/passport');
@@ -66,6 +69,19 @@ var requestHandlerFuncForUpdatingInfo = function(req, res, next) {
 app.post("/updated",requestHandlerFuncForUpdatingInfo);
 
 //Start the express.js web server and output a user-friendly terminal message in a callback
+User.plugin(findOneOrCreate);
+passport.use(new GitHubStrategy({
+    clientID: secret.clientID,
+    clientSecret: secret.clientSecret,
+    callbackURL: "http://127.0.0.1:3000/auth/github/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+    User.findOneOrCreate({ githubId: profile.id}, function (err, user) {
+      return done(err, user);
+    });
+  }
+));
+
 app.listen(port, function(){
  console.log('The server is running, ' + ' please, open your browser at http://localhost:%s', port); 
 });

@@ -26,7 +26,7 @@
     "mocha": "^2.3.4",
     "mongodb": "^2.0.49",
     "mongoose": "^4.2.7",
-    "mongoose-findorcreate": "^0.1.2",
+    "mongoose-find-one-or-create": "^0.2.0",
     "passport": "^0.3.2",
     "passport-github2": "^0.1.9"
   }
