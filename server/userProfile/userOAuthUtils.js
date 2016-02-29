@@ -16,7 +16,7 @@ passport.deserializeUser(function(obj, done) {
 module.exports = {
     passportAuthenticate: passport.authenticate('github'), 
     directToProfile : function (req, res) {
-      res.redirect('http://localhost:8080/#/profile');
+      res.redirect('https://paired-up.herokuapp.com/#/profile');
     },
     sendingUserToClient: function(req, res){
 
@@ -36,8 +36,11 @@ module.exports = {
           }else {
             var user = new User();
             user.github = profile.id;
+            user.githubName = profile.username;
             user.picture = profile._json.avatar_url;
             user.displayName = profile.displayName;
+            user.email = profile.email;
+            user.location = profile.location;
             user.save(function() {});
             globalProfile = user;
           }

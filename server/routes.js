@@ -44,7 +44,8 @@ module.exports = function(app) {
   passport.use(new GitHubStrategy({
       clientID: config.GITHUB_CLIENT_ID,
       clientSecret: config.GITHUB_SECRET,
-      callbackURL: "http://127.0.0.1:8080/auth/github/callback"
+      callbackURL: "https://paired-up.herokuapp.com/auth/github/callback",
+      userAgent: "PairedUp"
     }, userAuthUtil.setingUserToGlobalProfile));
 
 

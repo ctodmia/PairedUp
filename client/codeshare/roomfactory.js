@@ -100,7 +100,7 @@ angular.module('myApp')
       }
     }
 
-    var socket = Io.connect("http://localhost:8080"),
+    var socket = Io.connect("https://paired-up.herokuapp.com"),
         connected = false;
 
     function addHandlers(socket) {

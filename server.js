@@ -1,13 +1,13 @@
 var express = require('express');
 var qs = require('querystring');
 var bodyParser = require('body-parser');
-// var favicon = require('express-favicon');
-// var favicon = require('serve-favicon');
+var favicon = require('express-favicon');
+var favicon = require('serve-favicon');
 var fs = require('fs');
 var multer  = require('multer');
 var cookieParser = require('cookie-parser');
 var path = require('path');
-var config = require('../config.js');
+var config = require('./config.js');
 var mongoose = require('mongoose');
 var uri = config.MONGO_URI; 
 
@@ -29,23 +29,24 @@ var session = require('express-session');
 var morgan = require('morgan');
 var upload = multer({ dest: 'uploads/' });
 var socketio = require('socket.io');
-var io = require('./socket/socket')(server);
+var io = require('./server/socket/socket')(server);
 
-server.listen(8080); 
-console.log("App listening on port 8080");
+//do not remove. Works for localhost AND deployment/production.
+var port = process.env.PORT || '8080'; 
+server.listen(port);
+console.log("App listening on port");
 
-
-var routesActivation = require('./routes');
+var routesActivation = require('./server/routes');
 
 app.set('port', process.env.PORT || 8080);
 app.use(upload.single('string'));
-// app.use(favicon("../favicon.ico"));
+app.use(favicon("./favicon.ico"));
 app.use(flash());
 app.use(morgan('dev'));
 app.use(cookieParser()); 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('../client'));
+app.use(express.static('./client'));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(session({ 

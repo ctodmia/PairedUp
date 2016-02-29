@@ -16,7 +16,7 @@ angular.module('myApp', [
     templateUrl: 'auth/login/login.html',
     controller: 'NavbarController'
   })
-
+  
   .state('logout', {
     url: '/logout',
     template: null,
@@ -102,10 +102,10 @@ angular.module('myApp', [
 
   $urlRouterProvider.otherwise('/login');
 
-
 }])
 
 Object.setPrototypeOf = Object.setPrototypeOf || function(obj, proto) {
   obj.__proto__ = proto;
   return obj;
+
 };

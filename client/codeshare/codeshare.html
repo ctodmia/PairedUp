@@ -4,8 +4,10 @@
 
       <table>
         <tr>
+          
           <td><button class="btn-primary btn" ui-sref="codeshare.contact" ng-click="isCollapsed = !isCollapsed">Contact List</button></td>
           <td> <button class="btn-primary btn" ui-sref="codeshare.room">Start VideoChat</button></td>
+
         </tr>
       </table>
       
@@ -53,18 +55,20 @@
           <td> <button class="btn-primary btn" ng-click='update()'>Update</button></td>
           <td><button class="btn-primary btn" ng-click='endLiveCodeShare()'>Stop CodeSharing</button></td>
           <td><button class="btn-primary btn" ng-click='delete()'>Delete</button></td>
+
+            <div>
+
+            </tr>
+          </table>
+          <div ui-ace="aceOption" class="ace_editor" ng-model="aceModel"></div>
           <div>
-
-          </tr>
-        </table>
-        <div ui-ace="aceOption" class="ace_editor" ng-model="aceModel"></div>
-                <div>
-          
+            
+          </div>
         </div>
-      </div>
 
+      </div>
     </div>
-  </div>
+
 
 
 
